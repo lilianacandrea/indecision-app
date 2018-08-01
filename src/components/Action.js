@@ -1,18 +1,17 @@
 import React from 'react';
 
 //stateless funtional component
-const Action = (props) => {
-    return (
-        <div>
-         <button 
-             onClick={props.handlePick}
-             disabled={!props.hasOptions}
-         >
-             What should I do?
-         </button>
-        </div> 
-     );
-};
+const Action = (props) => (
+    <div>
+     <button className="big-button"
+         onClick={props.handlePick}
+         disabled={!props.hasOptions}
+     >
+         What should I do?
+     </button>
+    </div> 
+ );
+ 
 
  // VS. Classes
 // class Action extends React.Component {

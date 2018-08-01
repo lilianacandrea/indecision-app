@@ -26,24 +26,24 @@ export default class IndecisionApp extends React.Component {
     //     };
     // }
 
-    handleDeleteOptions = () =>  {
+    handleDeleteOptions = () => {
         // this.setState(() => {
         //     return {
         //         options: []
         //     };
         // });
         // acelasi lucru ca mai sus doar ca inline
-        this.setState(() => ({options: []}));
+        this.setState(() => ({ options: [] }));
     };
 
     handleDeleteOption = (optionToRemove) => {
         this.setState((prevState) => ({
-            options:prevState.options.filter((option) => optionToRemove !== option)
+            options: prevState.options.filter((option) => optionToRemove !== option)
         }));
     };
 
     handleClearSelectedOption = () => {
-        this.setState(() => ({selectedOption: undefined}));
+        this.setState(() => ({ selectedOption: undefined }));
     };
 
     handlePick = () => {
@@ -51,7 +51,7 @@ export default class IndecisionApp extends React.Component {
         const option = this.state.options[randomNum];
         // alert(option);
         // set the modal (popup) instead of alert
-        this.setState((prevState) => ({selectedOption: option}));
+        this.setState((prevState) => ({ selectedOption: option }));
     };
 
     handleAddOption = (option) => {
@@ -66,19 +66,19 @@ export default class IndecisionApp extends React.Component {
         }));
     };
 
-     // life circle methods
+    // life circle methods
     componentDidMount() {
         try {
             const json = localStorage.getItem('options');
-            const options =JSON.parse(json);
+            const options = JSON.parse(json);
             if (options) {
-                this.setState(() => ({options}));
+                this.setState(() => ({ options }));
             }
             console.log('fetching data!');
         } catch (e) {
             // do nothing at all :))
-        }     
-    }  
+        }
+    }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.options.length !== this.state.options.length) {
             const json = JSON.stringify(this.state.options);
@@ -86,7 +86,7 @@ export default class IndecisionApp extends React.Component {
             console.log('saving data!');
         }
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log('componentWillUnmount!');
     }
     render() {
@@ -94,20 +94,24 @@ export default class IndecisionApp extends React.Component {
 
         return (
             <div>
-                <Header subtitle={subtitle}/> 
-                <Action 
-                    hasOptions={this.state.options.length > 0}
-                    handlePick={this.handlePick}
-                />
-                <Options 
-                    options={this.state.options}
-                    handleDeleteOptions={this.handleDeleteOptions}
-                    handleDeleteOption={this.handleDeleteOption}
-                />
-                <AddOption  
-                    handleAddOption={this.handleAddOption}
-                />
-                <OptionModal 
+                <Header subtitle={subtitle} />
+                <div className="container">
+                    <Action
+                        hasOptions={this.state.options.length > 0}
+                        handlePick={this.handlePick}
+                    />
+                    <div className="widget">
+                        <Options
+                            options={this.state.options}
+                            handleDeleteOptions={this.handleDeleteOptions}
+                            handleDeleteOption={this.handleDeleteOption}
+                        />
+                        <AddOption
+                            handleAddOption={this.handleAddOption}
+                        />
+                    </div>
+                </div>
+                <OptionModal
                     selectedOption={this.state.selectedOption}
                     handleClearSelectedOption={this.handleClearSelectedOption}
                 />
