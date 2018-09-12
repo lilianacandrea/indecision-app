@@ -33,6 +33,9 @@
     "build": "webpack",
     "dev-server": "webpack-dev-server --watch"
   },
+  "engines": {
+    "node": "10.3.0"
+  },
   "author": "",
   "license": "ISC"
 }
